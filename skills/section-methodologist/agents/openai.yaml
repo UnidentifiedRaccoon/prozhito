@@ -1,0 +1,4 @@
+interface:
+  display_name: "Section Methodologist"
+  short_description: "Сборка и QA двухэкранной Section"
+  default_prompt: "Используй $section-methodologist, чтобы собрать и проверить двухэкранную Section."

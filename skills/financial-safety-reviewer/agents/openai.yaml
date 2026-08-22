@@ -1,0 +1,4 @@
+interface:
+  display_name: "Financial Safety Reviewer"
+  short_description: "Финансовая точность и безопасные формулировки"
+  default_prompt: "Используй $financial-safety-reviewer, чтобы проверить источники и финансовую безопасность Section."
