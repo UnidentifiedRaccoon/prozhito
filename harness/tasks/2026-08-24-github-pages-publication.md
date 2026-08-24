@@ -6,7 +6,7 @@
 
 **Владелец:** Codex
 
-**Статус:** active
+**Статус:** done
 
 **Цель:** Проверенно отправить текущую статическую демоверсию в `UnidentifiedRaccoon/prozhito` и опубликовать собранный `dist` через GitHub Pages.
 
@@ -23,6 +23,8 @@
 
 - `.github/workflows/pages.yml`
 - `vite.config.ts`
+- `package-lock.json`
+- `harness/PROJECT_STATE.md`
 - `harness/tasks/2026-08-24-github-pages-publication.md`
 - Git index, коммит и ветка `main` в рамках утверждённой публикации
 - настройки GitHub Pages репозитория `UnidentifiedRaccoon/prozhito`
@@ -52,24 +54,41 @@
 
 ## Result
 
-**Итог:** В работе.
+**Итог:** Статическая демоверсия отправлена в публичный репозиторий `UnidentifiedRaccoon/prozhito`, GitHub Pages включён в режиме GitHub Actions, успешный deployment опубликован по адресу `https://unidentifiedraccoon.github.io/prozhito/`.
 
 **Файлы:**
 
-- В работе.
+- создан `.github/workflows/pages.yml` для воспроизводимой сборки и deploy `dist`;
+- в `vite.config.ts` установлен Pages base `/prozhito/`;
+- `package-lock.json` синхронизирован npm `11.17.0`, который использует GitHub runner;
+- `.gitignore` исключает build output, зависимости, debug-логи и локальные review-артефакты;
+- `harness/PROJECT_STATE.md` обновлён фактом публикации статического демо.
 
 **Проверки:**
 
-- В работе.
+- `gh repo view UnidentifiedRaccoon/prozhito --json nameWithOwner,visibility,url,defaultBranchRef` — PASS: account/target `UnidentifiedRaccoon/prozhito`, `PUBLIC`, default branch `main`;
+- `git rev-list --all --count` и `git rev-list --max-parents=0 --all` до публикации — PASS: один самостоятельный root-коммит;
+- staged filename и secret scan — PASS: `.env`, ключи, токены, debug-логи, локальные review-артефакты и symlink отсутствуют;
+- `npx --yes npm@11.17.0 ci` — PASS, 0 известных уязвимостей по npm audit;
+- `npm run build` — PASS: typecheck, contract-проверка manifest 22 Section, двух экранов и девяти звеньев, production build;
+- подсчёт Section — PASS: `3 / 4 / 4 / 4 / 4 / 3`, всего 22;
+- подсчёт уникальных action ID — PASS: 48;
+- локальная проверка относительных targets в 59 Markdown-файлах — PASS;
+- `git diff --cached --check` перед коммитом — PASS;
+- GitHub Actions run `32700112169` — PASS: install, build, configure, artifact upload и deploy;
+- HTTPS-проверка `index.html`, JS и CSS на GitHub Pages — PASS: `HTTP 200`.
 
 **Источники и даты:**
 
-- В работе.
+- GitHub Docs, `Using custom workflows with GitHub Pages` и `Configuring a publishing source for your GitHub Pages site` — проверены 24 августа 2026 года для состава workflow и режима публикации;
+- Vite Docs, `Deploying a Static Site` — проверен 24 августа 2026 года для base `/prozhito/` и Pages workflow;
+- GitHub API/CLI — account, visibility, Pages URL и deployment проверены 24 августа 2026 года.
 
 **Оставшиеся риски:**
 
-- В работе.
+- production build предупреждает о главном JS chunk размером 566.40 kB до gzip; это не блокирует публикацию, но остаётся отдельным performance-кандидатом;
+- репозиторий и Pages публичны, как проверено перед публикацией.
 
 **Следующий шаг:**
 
-- В работе.
+- Провести отдельный human review опубликованной демоверсии на реальном мобильном устройстве; не начинать автоматически.
