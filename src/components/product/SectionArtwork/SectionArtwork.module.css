@@ -1,0 +1,75 @@
+.root {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--surface-subtle);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  color: transparent;
+}
+
+.variantStory {
+  margin-bottom: clamp(2rem, 6vw, 3.5rem);
+  border-radius: 0.5rem;
+  background: transparent;
+}
+
+.variantStory .image {
+  aspect-ratio: 3 / 2;
+  object-position: 50% 44%;
+  -webkit-mask-image: radial-gradient(
+    ellipse 102% 104% at center,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 102% 104% at center,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+.variantCatalog {
+  min-height: 7.5rem;
+  border-radius: calc(var(--radius-media) - 0.15rem);
+}
+
+.variantCatalog .image {
+  aspect-ratio: 16 / 7;
+  object-position: 50% 10%;
+  filter: saturate(0.82) contrast(0.96);
+}
+
+.variantAnalysis {
+  width: min(100%, 34rem);
+  margin: clamp(2.75rem, 7vw, 4.5rem) 0 0 auto;
+  border-radius: var(--radius-media);
+  background: transparent;
+}
+
+.variantAnalysis .image {
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+
+@media (max-width: 40rem) {
+  .variantStory .image {
+    aspect-ratio: 4 / 3;
+    object-position: 50% 42%;
+  }
+
+  .variantCatalog {
+    min-height: 6.5rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .root {
+    border: 1px solid CanvasText;
+  }
+}

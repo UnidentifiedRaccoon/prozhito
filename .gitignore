@@ -2,3 +2,8 @@
 .env
 .env.*
 *.local
+node_modules/
+dist/
+storybook-static/
+.impeccable/
+debug-*.log

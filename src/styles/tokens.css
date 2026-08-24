@@ -1,0 +1,94 @@
+:root {
+  /* Primitive paper and ink */
+  --palette-paper-canvas: #ebe5da;
+  --palette-paper: #f7f3ea;
+  --palette-paper-high: #fcfaf5;
+  --palette-paper-subtle: #eee8dc;
+  --palette-ink: #2f302d;
+  --palette-ink-muted: #65665f;
+  --palette-line: #cfc8bb;
+  --palette-blue-ink: #315f76;
+  --palette-blue-ink-hover: #244d61;
+  --palette-blue-soft: #dbe4e5;
+  --palette-graphite-fill: #3a484a;
+  --palette-graphite-fill-hover: #2f3d3f;
+
+  /* Primitive watercolor — decorative roles only */
+  --palette-water-blue: #8ea2aa;
+  --palette-water-ochre: #c79a57;
+  --palette-water-sage: #89917b;
+  --palette-water-mauve: #a88a91;
+  --palette-water-mist: #b9c7ca;
+  --palette-water-ochre-soft: #dfcba7;
+  --palette-water-sage-soft: #c6ccbb;
+  --palette-water-mauve-soft: #d5c0c4;
+  --palette-water-mist-soft: #d7dfe0;
+  --palette-water-earth: #a77f58;
+  --palette-water-earth-soft: #ddc7a8;
+
+  /* Primitive spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* Primitive type */
+  --font-reading: "Iowan Old Style", "Palatino Linotype", Palatino,
+    "Book Antiqua", Georgia, serif;
+  --font-interface: ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-size-small: 0.875rem;
+  --font-size-medium: 1rem;
+  --font-size-large: 1.25rem;
+
+  /* Primitive shape, elevation and motion */
+  --radius-control: 0.625rem;
+  --radius-media: 0.75rem;
+  --radius-sheet: 1.125rem;
+  --shadow-sheet: 0 1px 2px rgb(45 43 38 / 18%),
+    0 12px 34px rgb(52 48 42 / 14%);
+  --shadow-object: 0 3px 10px rgb(52 48 42 / 12%);
+  --duration-fast: 120ms;
+  --duration-medium: 180ms;
+  --easing-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Semantic colors */
+  --background: var(--palette-paper-canvas);
+  --surface: var(--palette-paper);
+  --surface-raised: var(--palette-paper-high);
+  --surface-subtle: var(--palette-paper-subtle);
+  --text: var(--palette-ink);
+  --muted: var(--palette-ink-muted);
+  --accent: var(--palette-blue-ink);
+  --accent-hover: var(--palette-blue-ink-hover);
+  --accent-soft: var(--palette-blue-soft);
+  --accent-fill: var(--palette-graphite-fill);
+  --accent-fill-hover: var(--palette-graphite-fill-hover);
+  --border: var(--palette-line);
+  --focus: var(--palette-blue-ink);
+  --on-accent: var(--palette-paper-high);
+
+  /* Semantic control sizes */
+  --control-height-small: 2.75rem;
+  --control-height-medium: 3rem;
+  --control-height-large: 3.5rem;
+
+  /* Semantic focus and layout */
+  --focus-width: 3px;
+  --focus-offset: 3px;
+  --reading-measure: 42rem;
+  --catalog-measure: 50rem;
+  --app-measure: 56rem;
+  --page-gutter: clamp(1.25rem, 4vw, 2rem);
+  --sheet-padding: clamp(1.25rem, 5vw, 3rem);
+
+  /* Compatibility alias for existing demo styles */
+  --ui-font: var(--font-interface);
+}

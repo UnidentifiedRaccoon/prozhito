@@ -1,0 +1,36 @@
+.canvas {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.sheet {
+  width: min(100%, var(--app-measure));
+  min-height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.article {
+  width: min(calc(100% - 2.5rem), var(--reading-measure));
+  margin: 0 auto;
+  padding: clamp(2.75rem, 8vw, 5rem) 0 clamp(4rem, 10vw, 7rem);
+}
+
+@media (min-width: 48rem) {
+  .canvas {
+    padding: var(--space-6);
+  }
+
+  .sheet {
+    border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+    border-radius: var(--radius-sheet);
+    box-shadow: var(--shadow-sheet);
+  }
+}
+
+@media (forced-colors: active) {
+  .sheet {
+    border: 1px solid CanvasText;
+  }
+}

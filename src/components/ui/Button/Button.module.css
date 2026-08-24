@@ -1,0 +1,104 @@
+.root {
+  --button-background-hover: var(--button-background);
+
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-height: var(--button-height);
+  padding: var(--button-padding-block) var(--button-padding-inline);
+  border: 1px solid var(--button-border);
+  border-radius: var(--radius-control);
+  background: var(--button-background);
+  color: var(--button-foreground);
+  font-family: var(--font-interface);
+  font-size: var(--button-font-size);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard),
+    transform var(--duration-fast) var(--easing-standard);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.root:hover:not(:disabled) {
+  border-color: var(--button-border-hover);
+  background: var(--button-background-hover);
+  color: var(--button-foreground-hover);
+  transform: translateY(-1px);
+}
+
+.root:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.root:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.sizeSmall {
+  --button-height: var(--control-height-small);
+  --button-padding-block: var(--space-2);
+  --button-padding-inline: var(--space-3);
+  --button-font-size: var(--font-size-small);
+}
+
+.sizeMedium {
+  --button-height: var(--control-height-medium);
+  --button-padding-block: var(--space-3);
+  --button-padding-inline: var(--space-5);
+  --button-font-size: var(--font-size-medium);
+}
+
+.sizeLarge {
+  --button-height: var(--control-height-large);
+  --button-padding-block: var(--space-4);
+  --button-padding-inline: var(--space-6);
+  --button-font-size: 1.0625rem;
+}
+
+.variantFilled {
+  --button-background: var(--accent-fill);
+  --button-background-hover: var(--accent-fill-hover);
+  --button-border: var(--accent-fill);
+  --button-border-hover: var(--accent-fill-hover);
+  --button-foreground: var(--on-accent);
+  --button-foreground-hover: var(--on-accent);
+}
+
+.variantOutline {
+  --button-background: var(--surface-raised);
+  --button-background-hover: var(--accent-soft);
+  --button-border: var(--border);
+  --button-border-hover: var(--accent);
+  --button-foreground: var(--text);
+  --button-foreground-hover: var(--accent-hover);
+}
+
+.variantGhost {
+  --button-background: transparent;
+  --button-background-hover: var(--accent-soft);
+  --button-border: transparent;
+  --button-border-hover: transparent;
+  --button-foreground: var(--accent);
+  --button-foreground-hover: var(--accent-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .root {
+    border-color: ButtonText;
+  }
+}

@@ -1,0 +1,51 @@
+.root {
+  margin-bottom: clamp(2.25rem, 6vw, 3.5rem);
+  text-align: center;
+}
+
+.label {
+  margin-bottom: var(--space-4);
+  color: var(--muted);
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.flourish {
+  position: relative;
+  display: block;
+  width: 4.6rem;
+  height: 0.75rem;
+  margin: var(--space-5) auto 0;
+}
+
+.flourish::before,
+.flourish::after {
+  position: absolute;
+  top: 50%;
+  width: 2.15rem;
+  height: 1px;
+  background: var(--border);
+  content: "";
+}
+
+.flourish::before {
+  left: 0;
+  transform: rotate(-5deg);
+  transform-origin: right center;
+}
+
+.flourish::after {
+  right: 0;
+  transform: rotate(5deg);
+  transform-origin: left center;
+}
+
+@media (min-width: 48rem) {
+  .root {
+    margin-bottom: 3.75rem;
+  }
+}

@@ -1,0 +1,510 @@
+@import "./styles/tokens.css";
+
+:root {
+  color: var(--text);
+  background: var(--background);
+  font-family: var(--font-reading);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  scroll-behavior: auto;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+}
+
+body::before {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  background:
+    linear-gradient(rgb(235 229 218 / 48%), rgb(235 229 218 / 48%)),
+    url("./assets/living-archive/texture/paper-canvas-512.jpg") center / 512px 512px
+      repeat;
+  content: "";
+  pointer-events: none;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 10;
+  top: 0.75rem;
+  left: 0.75rem;
+  min-height: 3rem;
+  padding: 0.8rem 1rem;
+  transform: translateY(-200%);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-control);
+  background: var(--surface-raised);
+  font-family: var(--ui-font);
+  font-weight: 700;
+  box-shadow: var(--shadow-object);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.app-frame {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--surface);
+}
+
+.masthead {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) 3rem;
+  align-items: center;
+  min-height: 4.5rem;
+  padding: 0 var(--page-gutter);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+}
+
+.masthead-catalog,
+.masthead-brand {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.masthead-catalog {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-left: -0.65rem;
+  border-radius: var(--radius-control);
+}
+
+.masthead-catalog:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+.masthead-index-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.masthead-brand {
+  justify-self: center;
+  margin: 0;
+  font-family: var(--font-reading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.masthead-brand-link:hover {
+  color: var(--accent-hover);
+}
+
+.masthead-spacer {
+  width: 3rem;
+  height: 1px;
+}
+
+.page {
+  width: min(calc(100% - 2.5rem), var(--reading-measure));
+  min-height: calc(100vh - 4.5rem);
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 4rem) 0 clamp(3.75rem, 9vw, 6rem);
+}
+
+.page:focus {
+  outline: none;
+}
+
+.page--immersive {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+}
+
+.section-reading-column {
+  width: min(calc(100% - 2.5rem), var(--reading-measure));
+  margin: 0 auto;
+  padding: clamp(2.75rem, 8vw, 5rem) 0 clamp(3.75rem, 9vw, 6rem);
+}
+
+.catalog-screen {
+  width: min(calc(100% - 2.5rem), var(--catalog-measure));
+}
+
+.catalog-intro {
+  padding: clamp(1.75rem, 5vw, 2.75rem) 0 clamp(2rem, 5vw, 3rem);
+  text-align: center;
+}
+
+.catalog-tagline {
+  max-width: 34rem;
+  margin: 0 auto;
+  color: var(--muted);
+}
+
+.level-section {
+  --level-wash: var(--palette-water-blue);
+  --level-wash-secondary: var(--palette-water-mist);
+
+  content-visibility: auto;
+  contain-intrinsic-size: auto 42rem;
+}
+
+.level-section + .level-section {
+  margin-top: clamp(4.5rem, 10vw, 7rem);
+}
+
+.level-section[data-level="2"] {
+  --level-wash: var(--palette-water-ochre);
+  --level-wash-secondary: var(--palette-water-ochre-soft);
+}
+
+.level-section[data-level="3"] {
+  --level-wash: var(--palette-water-sage);
+  --level-wash-secondary: var(--palette-water-sage-soft);
+}
+
+.level-section[data-level="4"] {
+  --level-wash: var(--palette-water-mauve);
+  --level-wash-secondary: var(--palette-water-mauve-soft);
+}
+
+.level-section[data-level="5"] {
+  --level-wash: var(--palette-water-mist);
+  --level-wash-secondary: var(--palette-water-mist-soft);
+}
+
+.level-section[data-level="6"] {
+  --level-wash: var(--palette-water-earth);
+  --level-wash-secondary: var(--palette-water-earth-soft);
+}
+
+.level-header {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: center;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-6);
+}
+
+.level-roman {
+  align-self: start;
+  color: var(--muted);
+  font-family: var(--font-reading);
+  font-size: clamp(2.25rem, 9vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.level-meta {
+  margin-bottom: var(--space-2);
+  color: var(--muted);
+  font-family: var(--font-interface);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.level-artwork {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin-top: var(--space-2);
+}
+
+.level-watercolor {
+  position: relative;
+  display: block;
+  min-height: 6.5rem;
+  overflow: hidden;
+  border-radius: calc(var(--radius-media) - 0.15rem);
+  background:
+    radial-gradient(
+      ellipse at 24% 54%,
+      color-mix(in srgb, var(--level-wash) 70%, transparent) 0 18%,
+      transparent 57%
+    ),
+    radial-gradient(
+      ellipse at 72% 45%,
+      color-mix(in srgb, var(--level-wash-secondary) 72%, transparent) 0 24%,
+      transparent 60%
+    ),
+    linear-gradient(
+      94deg,
+      color-mix(in srgb, var(--level-wash) 20%, var(--surface)) 0%,
+      color-mix(in srgb, var(--level-wash-secondary) 23%, var(--surface)) 100%
+    );
+}
+
+.level-watercolor::before,
+.level-watercolor::after {
+  position: absolute;
+  content: "";
+  opacity: 0.48;
+}
+
+.level-watercolor::before {
+  right: 11%;
+  bottom: 17%;
+  width: 38%;
+  height: 1px;
+  background: var(--muted);
+  box-shadow:
+    -3rem -0.75rem 0 -0.25px color-mix(in srgb, var(--muted) 48%, transparent),
+    1.5rem -1.1rem 0 -0.25px color-mix(in srgb, var(--muted) 42%, transparent);
+}
+
+.level-watercolor::after {
+  left: 12%;
+  bottom: 18%;
+  width: 2.3rem;
+  height: 3.4rem;
+  border-right: 1px solid var(--muted);
+  border-bottom: 1px solid var(--muted);
+  transform: skew(-8deg);
+}
+
+.section-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  list-style: none;
+}
+
+.section-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.section-list a {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr) 1.4rem;
+  gap: var(--space-3);
+  align-items: center;
+  min-height: 4.8rem;
+  padding: 1.2rem 0.35rem;
+  color: var(--text);
+  font-size: clamp(1.15rem, 4.2vw, 1.42rem);
+  line-height: 1.32;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-fast) var(--easing-standard),
+    color var(--duration-fast) var(--easing-standard);
+}
+
+.section-list a:hover {
+  background: color-mix(in srgb, var(--accent-soft) 54%, transparent);
+  color: var(--accent-hover);
+}
+
+.section-number {
+  font-family: var(--ui-font);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.section-arrow {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--muted);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+  transition: transform var(--duration-fast) var(--easing-standard);
+}
+
+.section-list a:hover .section-arrow {
+  transform: translateX(1px);
+}
+
+.markdown-content {
+  color: var(--text);
+  font-size: clamp(1.0625rem, 1rem + 0.22vw, 1.1875rem);
+  line-height: 1.72;
+}
+
+.markdown-content p {
+  margin: 0;
+}
+
+.markdown-content p + p {
+  margin-top: 1.35em;
+}
+
+.markdown-content a {
+  overflow-wrap: anywhere;
+}
+
+.story-article .markdown-content > p:first-child::first-letter {
+  float: left;
+  margin: 0.08em 0.12em 0 0;
+  color: var(--accent);
+  font-family: var(--font-reading);
+  font-size: 3.5em;
+  line-height: 0.77;
+}
+
+.analysis-article {
+  position: relative;
+}
+
+.message-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.message-screen pre {
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface-raised);
+  font: 0.9rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace;
+  white-space: pre-wrap;
+}
+
+@media (min-width: 48rem) {
+  #root {
+    padding: var(--space-6);
+  }
+
+  .app-frame {
+    width: min(100%, var(--app-measure));
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+    border-radius: var(--radius-sheet);
+    box-shadow: var(--shadow-sheet);
+  }
+
+  .level-header {
+    grid-template-columns: 4.25rem minmax(0, 1fr) minmax(15rem, 19rem);
+    gap: var(--space-6);
+    min-height: 10rem;
+  }
+
+  .level-roman {
+    align-self: center;
+  }
+
+  .level-artwork {
+    grid-column: auto;
+    margin-top: 0;
+  }
+
+  .level-watercolor {
+    min-height: 8.4rem;
+  }
+
+  .section-list a {
+    padding-right: var(--space-3);
+    padding-left: var(--space-3);
+  }
+}
+
+@media (max-width: 30rem) {
+  .masthead {
+    min-height: 4rem;
+  }
+
+  .page {
+    min-height: calc(100vh - 4rem);
+  }
+
+  .level-header {
+    grid-template-columns: 2.7rem minmax(0, 1fr);
+    gap: var(--space-3);
+  }
+
+  .section-list a {
+    grid-template-columns: 2.15rem minmax(0, 1fr) 1.1rem;
+    gap: var(--space-2);
+    padding-right: 0.15rem;
+    padding-left: 0.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-arrow,
+  .section-list a {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  body::before {
+    display: none;
+  }
+
+  .app-frame,
+  .level-header,
+  .section-list,
+  .section-list li {
+    border-color: CanvasText;
+  }
+
+  .level-watercolor {
+    border: 1px solid CanvasText;
+    background: Canvas;
+  }
+}

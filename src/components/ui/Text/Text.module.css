@@ -1,0 +1,44 @@
+.root {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.variantBody {
+  font-family: var(--font-reading);
+  font-size: clamp(1.0625rem, 1rem + 0.22vw, 1.1875rem);
+  line-height: 1.72;
+}
+
+.variantLead {
+  max-width: 26rem;
+  font-family: var(--font-reading);
+  font-size: clamp(1.25rem, 4.5vw, 1.5rem);
+  line-height: 1.45;
+}
+
+.variantLabel {
+  font-family: var(--font-interface);
+  font-size: var(--font-size-medium);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.variantCaption {
+  font-family: var(--font-interface);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+.toneDefault {
+  --text-color: var(--text);
+}
+
+.toneMuted {
+  --text-color: var(--muted);
+}
+
+.toneAccent {
+  --text-color: var(--accent);
+}

@@ -1,0 +1,132 @@
+.root {
+  --chain-item-gap: clamp(1.75rem, 5vw, 2.4rem);
+  --chain-marker-size: 0.88rem;
+  --chain-rail-width: 1px;
+
+  position: relative;
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin: 0;
+  padding: 0 0 0 2.25rem;
+  list-style: none;
+}
+
+.item {
+  --chain-marker-color: var(--palette-water-blue);
+
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: var(--space-3);
+  margin-bottom: var(--chain-item-gap);
+  padding: 0 0 var(--space-2);
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.item:nth-child(2),
+.item:nth-child(6) {
+  --chain-marker-color: var(--palette-water-ochre);
+}
+
+.item:nth-child(3),
+.item:nth-child(7) {
+  --chain-marker-color: var(--palette-water-sage);
+}
+
+.item:nth-child(4),
+.item:nth-child(8) {
+  --chain-marker-color: var(--palette-water-mauve);
+}
+
+.item:nth-child(5),
+.item:nth-child(9) {
+  --chain-marker-color: var(--palette-water-mist);
+}
+
+.label,
+.description {
+  margin: 0;
+}
+
+.label {
+  color: var(--accent);
+  font-family: var(--font-interface);
+  font-size: 0.8125rem;
+  font-weight: 750;
+  line-height: 1.35;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.description {
+  color: var(--text);
+  font-family: var(--font-reading);
+  font-size: clamp(1.0625rem, 1rem + 0.18vw, 1.15rem);
+  line-height: 1.62;
+}
+
+.marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -2.25rem;
+  display: block;
+  width: 1.25rem;
+}
+
+.marker::before,
+.marker::after {
+  position: absolute;
+  left: 50%;
+  content: "";
+  transform: translateX(-50%);
+}
+
+.marker::before {
+  z-index: 1;
+  top: 0.2rem;
+  width: var(--chain-marker-size);
+  height: var(--chain-marker-size);
+  border: 2px solid var(--surface);
+  border-radius: 0.1rem;
+  background: var(--chain-marker-color);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--muted) 60%, transparent);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.marker::after {
+  top: 1.18rem;
+  bottom: calc(-1 * var(--chain-item-gap) - 1px);
+  width: var(--chain-rail-width);
+  background: var(--border);
+}
+
+.item:last-child .marker::after {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .root {
+    padding-left: 3rem;
+  }
+
+  .marker {
+    left: -3rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .marker::before {
+    border-color: Canvas;
+    background: ButtonText;
+    box-shadow: 0 0 0 1px ButtonText;
+  }
+
+  .marker::after {
+    background: ButtonText;
+  }
+
+}
