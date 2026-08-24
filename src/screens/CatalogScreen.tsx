@@ -12,8 +12,6 @@ interface CatalogScreenProps {
 
 const ROMAN_LEVELS = ["I", "II", "III", "IV", "V", "VI"] as const;
 
-const firstSectionCatalogArtwork = getSectionVisuals("L01-S01")?.catalog;
-
 export function CatalogScreen({ levels }: CatalogScreenProps) {
   return (
     <AppShell className="catalog-screen" pageTitle="Прожито" routeKey="catalog">
@@ -25,6 +23,10 @@ export function CatalogScreen({ levels }: CatalogScreenProps) {
 
       {levels.map((level) => {
         const titleId = `${level.id.toLowerCase()}-title`;
+        const catalogArtwork = getSectionVisuals(
+          level.sections[0]?.id ?? "",
+        )?.catalog;
+        const isFirstLevel = level.number === 1;
 
         return (
           <section
@@ -46,11 +48,11 @@ export function CatalogScreen({ levels }: CatalogScreenProps) {
                 </Heading>
               </div>
               <div className="level-artwork" aria-hidden="true">
-                {level.number === 1 && firstSectionCatalogArtwork ? (
+                {catalogArtwork ? (
                   <SectionArtwork
-                    {...firstSectionCatalogArtwork}
-                    fetchPriority="high"
-                    loading="eager"
+                    {...catalogArtwork}
+                    fetchPriority={isFirstLevel ? "high" : "auto"}
+                    loading={isFirstLevel ? "eager" : "lazy"}
                     variant="catalog"
                   />
                 ) : (

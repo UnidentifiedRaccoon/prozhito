@@ -25,6 +25,7 @@ export function SectionArtwork({
   alt,
   className,
   decoding = "async",
+  focal: _focal,
   height,
   loading = "lazy",
   src,
@@ -38,6 +39,7 @@ export function SectionArtwork({
         alt={alt}
         className={styles.image}
         decoding={decoding}
+        draggable={false}
         height={height}
         loading={loading}
         src={src}

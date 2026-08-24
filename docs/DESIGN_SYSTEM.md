@@ -58,7 +58,8 @@ Dark mode не входит в текущий scope. При его появле�
 - Roman numeral обозначает только уровень;
 - двухзначный Arabic number обозначает Section внутри уровня;
 - каждый уровень имеет отдельный разделительный visual band;
-- L01 использует crop сюжетного master L01-S01, остальные уровни получают token-based watercolor wash и не выглядят пустыми;
+- каждый из шести уровней использует catalog crop сюжетного master своей первой Section; отдельная генерация для каталога не создаётся;
+- первый catalog crop загружается eagerly с высоким приоритетом, остальные не preload-ятся и используют lazy loading;
 - Section остаются простыми ruled rows, а не карточной сеткой.
 
 ## CSS и TypeScript
@@ -147,11 +148,13 @@ Loading, icon-only и danger tone не входят в текущий контр
 
 `SectionHeroHeader` из `src/components/product` — общая immersive-шапка двух экранов Section с проверенными assets. Типизированный `variant: story | analysis` не является свободным визуальным переключателем: каждое значение фиксирует пользовательскую подпись, aria-label навигации, высоту, crop и локальную graphite-вуаль. В обоих случаях единственный `h1` и подпись остаются настоящим HTML, а не частью raster.
 
-Вариант `story` сохраняет утверждённую «Акварельную обложку» и более высокую сюжетную композицию. Вариант `analysis` использует отдельный hero-safe still-life L01-S01 и компактную высоту: он визуально связывает два экрана, но не откладывает начало девятизвенной цепочки на ещё один полный viewport. Обязательные предметы сгруппированы в центральной mobile-safe зоне, а нижняя часть raster оставлена свободной под заголовок. Нижний `SectionArtwork` перед footer на экране «Решение» не дублируется.
+Вариант `story` сохраняет утверждённую «Акварельную обложку» и более высокую сюжетную композицию. Вариант `analysis` использует отдельный hero-safe предметный still-life и компактную высоту: он визуально связывает два экрана, но не откладывает начало девятизвенной цепочки на ещё один полный viewport. Для всех 22 Section обязательный сюжетный субъект или предметы сгруппированы в центральной mobile-safe зоне, а нижняя часть raster оставлена свободной под заголовок. Нижний `SectionArtwork` перед footer на экране «Решение» не дублируется.
+
+`variant` продолжает задавать только семантику, высоту, copy и hero-анатомию. Индивидуальные desktop/mobile focal positions хранятся типизированными metadata рядом с asset в `src/visuals/sectionVisuals.ts` и передаются в CSS custom properties; CSS не содержит условий по Section ID. Forced-colors поведение hero сохраняется.
 
 В hero существует ровно один navigation control: нативная круглая ссылка 44 × 44 px со стрелкой влево, всегда ведущая в общий каталог. Видимого текста у control нет; доступное имя — `Все истории`. Burger-icon не используется, потому что отдельного меню hero не открывает. Сюжетное изображение сохраняет смысловой alt; декоративный still-life использует пустой alt. Оба raster не принимают pointer events, не выделяются и не перетаскиваются.
 
-Storybook сохраняет прежний story-id `cover-overlay` для сюжетной композиции и добавляет отдельную story адаптированного экрана «Решение». Отклонённые `archiveLabel`, `imageThenTitle`, scroll cue и их CSS не возвращаются. Raster не содержит текста, дат, сумм, логотипов или UI; контраст создаётся CSS. Production использует hero только при наличии соответствующего visual asset; Section без asset сохраняют общий masthead и обычный `SectionHeader`. Любой новый asset требует отдельной проверки crop и контраста на mobile/desktop.
+Storybook сохраняет прежний story-id `cover-overlay` для сюжетной композиции и отдельную story экрана «Решение». Отклонённые `archiveLabel`, `imageThenTitle`, scroll cue и их CSS не возвращаются. Raster не содержит текста, дат, сумм, логотипов или UI; контраст создаётся CSS. Все 22 Section имеют проверенную пару assets. Любой будущий asset требует отдельной проверки crop и контраста на mobile/desktop.
 
 ## SectionFooter
 
@@ -190,11 +193,12 @@ Storybook сохраняет прежний story-id `cover-overlay` для сю
 - source, размеры и alt-текст приходят из `src/visuals/sectionVisuals.ts`;
 - `story` использует master `3:2`, на узком экране — crop `4:3`;
 - `catalog` использует crop того же master, а не отдельную генерацию персонажа;
-- `analysis` остаётся доступной inline-ролью для будущего проверенного asset, но L01-S01 использует свой still-life только через `SectionHeroHeader` и не дублирует его после девятого звена;
+- `analysis` хранит отдельный предметный still-life и используется через `SectionHeroHeader`, не дублируясь после девятого звена;
+- mobile и desktop focal positions хранятся рядом с asset metadata и не создают новые visual variants;
 - смысловой asset получает точный alt, полностью дублирующий текст декоративный asset — пустой alt;
 - приложение никогда не ссылается на `$CODEX_HOME/generated_images`: финальные файлы хранятся внутри workspace.
 
-В `src/assets/living-archive` сохраняются generation masters и отдельные оптимизированные runtime exports. На текущем проходе приложение загружает `story-arrival-1200.jpg` (1200 × 800), адаптированный `analysis-hero-1536-v1.jpg` (1536 × 1024) и повторяемую `paper-canvas-512.jpg` (512 × 512); прежний inline still-life, исходные generation masters и D-F anchor не импортируются в runtime bundle.
+В `src/assets/living-archive` для каждой Section сохраняются generation master `1536 × 1024` и отдельный оптимизированный runtime export `1200 × 800`. Приложение импортирует runtime exports и повторяемую `paper-canvas-512.jpg`; masters и D-F anchor остаются project references и не входят в runtime bundle.
 
 ## Storybook
 
