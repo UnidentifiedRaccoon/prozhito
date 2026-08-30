@@ -1,0 +1,260 @@
+.card {
+  --catalog-gutter: clamp(1.25rem, 4cqw, 4rem);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-width: 0;
+  gap: 1.5rem;
+  padding: 1.25rem var(--catalog-gutter);
+  border-top: 1px solid var(--ev2-line);
+  background: var(--ev2-canvas);
+  color: var(--ev2-text);
+  text-decoration: none;
+}
+
+.card:hover .title,
+.card:hover .action {
+  color: var(--ev2-accent);
+}
+
+.card[data-catalog-card]:focus-visible {
+  outline: 2px solid var(--ev2-accent);
+  outline-offset: -4px;
+}
+
+.copy {
+  position: relative;
+  min-width: 0;
+}
+
+.number {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--ev2-muted);
+  font-family: var(--ev2-serif);
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--ev2-serif);
+  font-size: clamp(1.625rem, 6.7cqw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.summary {
+  margin: 0.65rem 0 0;
+  color: var(--ev2-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.action {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 0.9rem;
+  color: var(--ev2-text-supporting);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.arrow {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1.4;
+}
+
+.artwork {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: var(--ev2-surface);
+}
+
+.artwork img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--catalog-image-x) var(--catalog-image-y);
+}
+
+/* Reproduce the current mobile anatomy inside the preview container. */
+.card[data-catalog-card="original"] {
+  padding-block: 1.5rem;
+}
+
+.card[data-catalog-card="original"] .copy {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  align-content: center;
+}
+
+.card[data-catalog-card="original"] .number {
+  grid-row: 1 / span 3;
+  margin-bottom: 0;
+  padding-top: 0.2rem;
+  font-size: 1.2rem;
+}
+
+.card[data-catalog-card="original"] .title {
+  font-size: clamp(2rem, 9cqw, 3rem);
+  line-height: 1.02;
+}
+
+.card[data-catalog-card="original"] .summary {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.card[data-catalog-card="original"] .action {
+  justify-self: start;
+  margin-top: 1.3rem;
+  font-size: 0.76rem;
+}
+
+.card[data-catalog-card="split"] {
+  grid-template-columns: minmax(0, 1fr) clamp(92px, 28cqw, 120px);
+  gap: clamp(0.75rem, 3cqw, 1rem);
+  align-items: stretch;
+}
+
+.card[data-catalog-card="split"] .artwork {
+  aspect-ratio: auto;
+}
+
+.card[data-catalog-card="background"] {
+  display: block;
+}
+
+.card[data-catalog-card="background"] .copy {
+  z-index: 2;
+  width: 68%;
+}
+
+.card[data-catalog-card="background"] .artwork {
+  position: absolute;
+  z-index: 0;
+  inset-block: 0;
+  inset-inline-end: 0;
+  width: 44%;
+  aspect-ratio: auto;
+}
+
+/* The entire text column ends before the opaque paper starts fading. */
+.card[data-catalog-card="background"]::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--ev2-canvas) 0%,
+    var(--ev2-canvas) 68%,
+    rgb(252 252 251 / 0.4) 76%,
+    rgb(252 252 251 / 0.08) 86%,
+    rgb(252 252 251 / 0) 100%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.card[data-catalog-card^="overlap"] {
+  gap: 0;
+  padding: 0;
+}
+
+.card[data-catalog-card^="overlap"] .artwork {
+  grid-row: 1;
+  height: clamp(160px, 42cqw, 180px);
+  aspect-ratio: auto;
+}
+
+.card[data-catalog-card^="overlap"] .artwork img {
+  object-position: var(--catalog-image-x) var(--catalog-overlap-y);
+}
+
+.card[data-catalog-card^="overlap"] .number {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  margin: 0;
+  padding: .25rem .4rem;
+  background: var(--ev2-canvas);
+  color: var(--ev2-text);
+}
+
+.card[data-catalog-card^="overlap"] .copy {
+  z-index: 1;
+  grid-row: 2;
+  width: calc(100% - var(--catalog-gutter));
+  margin-top: -32px;
+  padding: 1.25rem var(--catalog-gutter);
+  background: var(--ev2-canvas);
+}
+
+.card[data-catalog-card="overlap-raised"] .number {
+  left: var(--catalog-gutter);
+  transform: translateY(-50%);
+}
+
+/* Keep the keyboard outline above the number when it touches the image edge. */
+.card[data-catalog-card^="overlap"]:focus-visible::after {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  outline: 2px solid var(--ev2-accent);
+  outline-offset: -4px;
+  pointer-events: none;
+  content: "";
+}
+
+@media (forced-colors: active) {
+  .card {
+    border-color: CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .card .number,
+  .card .title,
+  .card .summary,
+  .card .action {
+    color: CanvasText;
+  }
+
+  .card[data-catalog-card="background"]::before,
+  .card[data-catalog-card^="overlap"] .number,
+  .card[data-catalog-card^="overlap"] .copy {
+    background: Canvas;
+  }
+
+  .card[data-catalog-card]:focus-visible,
+  .card[data-catalog-card^="overlap"]:focus-visible::after {
+    outline-color: Highlight;
+  }
+}

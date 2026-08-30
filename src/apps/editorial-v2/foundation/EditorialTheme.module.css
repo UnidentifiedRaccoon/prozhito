@@ -1,0 +1,63 @@
+.root {
+  --ev2-canvas: #fcfcfb;
+  --ev2-surface: #ffffff;
+  --ev2-workspace: #f2f5f3;
+  --ev2-workspace-active: #e4eeee;
+  --ev2-text: #202522;
+  --ev2-text-supporting: #343b37;
+  --ev2-muted: #66706a;
+  --ev2-line: #cfd5d1;
+  --ev2-line-strong: #9ca8a2;
+  --ev2-accent: #245d65;
+  --ev2-accent-strong: #17474e;
+  --ev2-serif: "New York", "Charter", "Sitka Text", Georgia, serif;
+  --ev2-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ev2-page-gutter: clamp(1.25rem, 4vw, 4rem);
+  --ev2-cover-measure: 1280px;
+  --ev2-section-measure: 800px;
+  --ev2-wide-measure: 86rem;
+  --ev2-reading-measure: 42rem;
+
+  min-width: 320px;
+  min-height: 100vh;
+  isolation: isolate;
+  background: var(--ev2-canvas);
+  color: var(--ev2-text);
+  font-family: var(--ev2-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+.root,
+.root * {
+  box-sizing: border-box;
+}
+
+.root :where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--ev2-accent);
+  outline-offset: 3px;
+}
+
+.root ::selection {
+  background: var(--ev2-workspace-active);
+}
+
+@media (max-width: 64rem) {
+  .root {
+    --ev2-section-measure: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .root * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .root :where(a, button, input, select, textarea):focus-visible {
+    outline-color: Highlight;
+  }
+}

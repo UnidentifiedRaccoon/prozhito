@@ -1,0 +1,23 @@
+.content {
+  width: min(calc(100% - (2 * var(--ev2-page-gutter))), var(--ev2-wide-measure));
+  margin: 0 auto;
+  padding: 5rem 0;
+}
+
+.content h1,
+.content p {
+  margin: 0;
+}
+
+.content h1 {
+  font-family: var(--ev2-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.content p {
+  margin-top: 1rem;
+  color: var(--ev2-muted);
+}

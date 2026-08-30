@@ -1,0 +1,48 @@
+.hero,
+.solution,
+.index {
+  margin: 0;
+  overflow: hidden;
+  background: var(--ev2-surface);
+}
+
+.hero,
+.solution {
+  border-top: 1px solid var(--ev2-line);
+  border-bottom: 1px solid var(--ev2-line);
+}
+
+.hero img,
+.solution img,
+.index img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--ev2-art-x-desktop) var(--ev2-art-y-desktop);
+}
+
+.hero img {
+  max-height: 45rem;
+  aspect-ratio: 3 / 2;
+}
+
+.solution img {
+  aspect-ratio: 2 / 1;
+}
+
+.index {
+  aspect-ratio: 3 / 2;
+}
+
+@media (max-width: 42rem) {
+  .hero img,
+  .solution img,
+  .index img {
+    object-position: var(--ev2-art-x-mobile) var(--ev2-art-y-mobile);
+  }
+
+  .solution img {
+    aspect-ratio: 4 / 3;
+  }
+}

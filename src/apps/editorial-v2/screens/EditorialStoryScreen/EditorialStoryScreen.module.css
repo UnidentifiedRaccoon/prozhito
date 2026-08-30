@@ -1,0 +1,37 @@
+.page {
+  padding-bottom: clamp(4rem, 7vw, 7rem);
+}
+
+.content {
+  --ev2-reading-measure: var(--ev2-section-measure);
+  width: min(calc(100% - (2 * var(--ev2-page-gutter))), var(--ev2-section-measure));
+  margin: 0 auto;
+}
+
+.content > section {
+  padding: 32px 0 20px;
+  text-align: left;
+}
+.content:focus {
+  /* This is a skip-link destination, not an interactive control. */
+  outline: none;
+}
+
+@media (max-width: 48rem) {
+  .content > nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  .content > nav a {
+    min-width: 0;
+    gap: 0.4rem;
+    justify-self: stretch;
+    overflow-wrap: anywhere;
+  }
+
+  .content > nav a:last-child {
+    justify-content: flex-end;
+  }
+}

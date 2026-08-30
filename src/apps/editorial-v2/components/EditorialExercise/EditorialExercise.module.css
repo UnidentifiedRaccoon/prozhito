@@ -1,0 +1,559 @@
+.root {
+  --ev2-exercise-locked: #e3e6e4;
+  margin-top: clamp(2.5rem, 5vw, 5rem);
+}
+
+.intro {
+  max-width: 43rem;
+  margin-bottom: 2rem;
+}
+
+.intro h2 {
+  margin: 0 0 1rem;
+  font-family: var(--ev2-serif);
+  font-size: clamp(1.75rem, 3.1vw, 2.7rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  scroll-margin-top: 1.5rem;
+}
+
+.textButton {
+  min-height: 2.75rem;
+  padding: 0.65rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--ev2-accent);
+  font: 650 0.83rem/1.5 var(--ev2-sans);
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 0.23em;
+  cursor: pointer;
+}
+
+.textButton:hover {
+  color: var(--ev2-accent-strong);
+}
+
+.readAction {
+  margin-top: 1rem;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+  align-items: start;
+  border: 1px solid var(--ev2-line);
+  background: var(--ev2-workspace);
+}
+
+.rail {
+  min-width: 0;
+  padding: 0;
+}
+
+.rail ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rail li + li {
+  border-top: 1px solid var(--ev2-line);
+}
+
+.rail button {
+  display: grid;
+  width: 100%;
+  min-height: 3.7rem;
+  grid-template-columns: 1.65rem minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.7rem 1.25rem;
+  border: 0;
+  background: transparent;
+  color: var(--ev2-text-supporting);
+  font-family: var(--ev2-sans);
+  text-align: left;
+  cursor: pointer;
+}
+
+.rail button:hover:not(:disabled):not([data-current]) {
+  background: var(--ev2-surface);
+}
+
+.rail button[data-filled]:not([data-current]):not(:disabled) {
+  background: var(--ev2-workspace);
+}
+
+.rail button:disabled {
+  background: var(--ev2-exercise-locked);
+  color: var(--ev2-muted);
+  cursor: default;
+}
+
+.rail button[data-current] {
+  background: var(--ev2-workspace-active);
+  color: var(--ev2-accent-strong);
+}
+
+.rail button:focus-visible {
+  outline: 2px solid var(--ev2-accent);
+  outline-offset: -3px;
+}
+
+.railNumber {
+  font-family: var(--ev2-serif);
+  font-size: 1.1rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+}
+
+.rail button[data-filled]:not(:disabled) .railNumber {
+  font-weight: 700;
+}
+
+.railCopy strong {
+  display: block;
+  font-size: 0.77rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.panel {
+  --exercise-panel-gutter: clamp(1.5rem, 2.8vw, 2.4rem);
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  min-width: 0;
+  padding: clamp(1.75rem, 3.2vw, 2.75rem) var(--exercise-panel-gutter) 0;
+  border-left: 1px solid var(--ev2-line);
+  scroll-margin-top: 1.5rem;
+}
+
+.fieldset {
+  flex-shrink: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fieldset legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
+
+.fieldset legend:focus {
+  outline: none;
+}
+
+.question {
+  display: block;
+  font-family: var(--ev2-serif);
+  font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+  line-height: 1.25;
+}
+
+.answers {
+  display: grid;
+  gap: 0;
+  margin-top: clamp(1.5rem, 2.8vw, 2rem);
+  margin-inline: calc(-1 * var(--exercise-panel-gutter));
+  border-block: 1px solid var(--ev2-line-strong);
+}
+
+.answers label {
+  position: relative;
+  display: block;
+  padding: 1rem var(--exercise-panel-gutter);
+  border: 0;
+  background: var(--ev2-surface);
+  cursor: pointer;
+}
+
+.answers label + label {
+  border-top: 1px solid var(--ev2-line-strong);
+}
+
+.answers label:hover {
+  background: var(--ev2-canvas);
+}
+
+.answers label[data-selected] {
+  background: var(--ev2-workspace-active);
+}
+
+.answers label:has(input:focus-visible) {
+  outline: 2px solid var(--ev2-accent);
+  outline-offset: -3px;
+}
+
+.answers input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.answers label > span,
+.fullText,
+.comparison p {
+  margin: 0;
+  color: var(--ev2-text-supporting);
+  font-family: var(--ev2-serif);
+  font-size: clamp(1rem, 1.1vw, 1.1rem);
+  line-height: 1.55;
+}
+
+.fullActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.stepActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  flex-shrink: 0;
+  gap: 0;
+  margin-top: auto;
+  margin-inline: calc(-1 * var(--exercise-panel-gutter));
+  padding: 0;
+  border-top: 1px solid var(--ev2-line);
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 2.8rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ev2-accent);
+  font: 650 0.82rem/1.3 var(--ev2-sans);
+  cursor: pointer;
+}
+
+.primaryButton {
+  background: var(--ev2-accent);
+  color: var(--ev2-surface);
+}
+
+.secondaryButton {
+  border-color: var(--ev2-line-strong);
+  background: transparent;
+  color: var(--ev2-text-supporting);
+}
+
+.primaryButton:hover:not(:disabled) {
+  background: var(--ev2-accent-strong);
+}
+
+.secondaryButton:hover:not(:disabled) {
+  border-color: var(--ev2-accent);
+  background: var(--ev2-surface);
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled {
+  border-color: var(--ev2-line);
+  background: transparent;
+  color: var(--ev2-muted);
+  cursor: default;
+}
+
+.stepActions > button {
+  min-width: 0;
+  border: 0;
+}
+
+.stepActions > button:last-child {
+  border-left: 1px solid var(--ev2-line);
+}
+
+.stepActions > .reviewAction {
+  grid-column: 1 / -1;
+  border-bottom: 1px solid var(--ev2-line);
+}
+
+.stepActions > button:focus-visible {
+  outline: 2px solid var(--ev2-accent);
+  outline-offset: -4px;
+}
+
+.stepActions > .primaryButton:focus-visible {
+  outline-color: var(--ev2-surface);
+}
+
+.fullList {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--ev2-line);
+  list-style: none;
+  scroll-margin-top: 1.5rem;
+}
+
+.fullList:focus {
+  /* A reading destination, not an interactive control. */
+  outline: none;
+}
+
+.fullList > li {
+  display: grid;
+  grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr);
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--ev2-line);
+}
+
+.linkHeading > span {
+  font-family: var(--ev2-serif);
+  font-size: 1.55rem;
+  line-height: 1.1;
+}
+
+.linkHeading h3 {
+  margin: 0.8rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.linkBody {
+  min-width: 0;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--ev2-line);
+}
+
+.comparison > div {
+  padding: 1rem 1.2rem;
+  background: var(--ev2-workspace);
+}
+
+.comparison > div + div {
+  border-left: 1px solid var(--ev2-line);
+  background: var(--ev2-surface);
+}
+
+.comparison h4 {
+  margin: 0 0 0.75rem;
+  color: var(--ev2-muted);
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.explanation {
+  margin: 1rem 0 0;
+  color: var(--ev2-text-supporting);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.fullActions {
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 48rem) {
+  .root:has(> .workspace) {
+    margin-top: 0;
+  }
+
+  .readAction {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+    margin-inline: calc(-1 * var(--ev2-exercise-bleed, 0px));
+    border-inline: 0;
+  }
+
+  .rail {
+    overflow-x: auto;
+    padding: 0.65rem;
+    overscroll-behavior-inline: contain;
+    scroll-margin-top: 1.5rem;
+    scrollbar-width: none;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rail ol {
+    display: flex;
+    width: max-content;
+    gap: 0.4rem;
+  }
+
+  .rail li + li {
+    border-top: 0;
+  }
+
+  .rail button {
+    width: 11.5rem;
+    min-height: 4rem;
+    padding: 0.6rem;
+  }
+
+  .panel {
+    --exercise-panel-gutter: var(--ev2-exercise-bleed, 1.25rem);
+    padding: 1.75rem var(--exercise-panel-gutter) 0;
+    border-top: 1px solid var(--ev2-line);
+    border-left: 0;
+  }
+
+  .answers label[data-selected]::before {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    border-inline-start: 3px solid var(--ev2-accent);
+    content: "";
+    pointer-events: none;
+  }
+
+  .fullList > li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1.5rem 0;
+  }
+
+  .linkHeading {
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    gap: 0.6rem;
+    align-items: start;
+  }
+
+  .linkHeading h3 {
+    margin: 0;
+    padding-top: 0.2rem;
+  }
+
+  .comparison {
+    --comparison-gutter: var(--ev2-exercise-bleed, var(--ev2-page-gutter));
+    grid-template-columns: minmax(0, 1fr);
+    margin-inline: calc(-1 * var(--comparison-gutter));
+    border-inline: 0;
+  }
+
+  .comparison > div {
+    padding: 1rem var(--comparison-gutter);
+  }
+
+  .comparison > div + div {
+    border-top: 1px solid var(--ev2-line);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 35rem) {
+  .intro {
+    margin-bottom: 1.4rem;
+  }
+
+  .stepActions > button {
+    padding-inline: 0.6rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .rail button:disabled {
+    color: GrayText;
+  }
+
+  .rail button[data-current],
+  .answers label[data-selected] {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
+
+  .rail button:focus-visible,
+  .answers label:has(input:focus-visible),
+  .stepActions > button:focus-visible,
+  .stepActions > .primaryButton:focus-visible {
+    outline-color: Highlight;
+  }
+
+  .answers label[data-selected]::before {
+    border-inline-start-color: Highlight;
+  }
+}
+
+/* BEGIN MOBILE RAIL EXPERIMENT — pending owner review.
+   Remove this block to restore only the preceding mobile rail presentation.
+   Continuous answer rows now apply at every viewport width. */
+@media (max-width: 48rem) {
+  .rail {
+    padding: 0;
+  }
+
+  .rail ol {
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .rail li {
+    position: relative;
+    display: flex;
+  }
+
+  .rail li + li::before {
+    position: absolute;
+    z-index: 1;
+    inset-inline-start: 0;
+    top: 50%;
+    height: 2.25rem;
+    border-inline-start: 1px solid var(--ev2-line-strong);
+    transform: translateY(-50%);
+    content: "";
+    pointer-events: none;
+  }
+
+  .rail button {
+    height: 100%;
+    min-height: 4.5rem;
+    padding: 0.85rem 1.25rem;
+    border: 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .rail button[data-current] {
+    border-bottom-color: var(--ev2-accent);
+    outline: none;
+  }
+
+  .rail button:focus-visible {
+    outline: 2px solid var(--ev2-accent);
+    outline-offset: -3px;
+  }
+}
+
+@media (max-width: 48rem) and (forced-colors: active) {
+  .rail button[data-current] {
+    border-bottom-color: Highlight;
+  }
+
+  .rail button:focus-visible {
+    outline-color: Highlight;
+  }
+}
+/* END MOBILE RAIL EXPERIMENT */

@@ -22,8 +22,9 @@
   pointer-events: none;
 }
 
-.variantStory .media {
-  min-height: clamp(31rem, 68svh, 39rem);
+.variantStory .media,
+.variantAnalysis .media {
+  min-height: clamp(26.35rem, 57.8svh, 33.15rem);
 }
 
 .variantStory .media::after {
@@ -35,10 +36,6 @@
     rgb(34 38 36 / 62%) 68%,
     rgb(28 31 30 / 95%) 100%
   );
-}
-
-.variantAnalysis .media {
-  min-height: clamp(22rem, 48svh, 24rem);
 }
 
 .variantAnalysis .media::after {
@@ -161,12 +158,9 @@
 }
 
 @media (min-width: 48rem) {
-  .variantStory .media {
-    min-height: min(64vh, 38rem);
-  }
-
+  .variantStory .media,
   .variantAnalysis .media {
-    min-height: clamp(24rem, 55svh, 28rem);
+    min-height: min(54.4vh, 32.3rem);
   }
 
   .image {

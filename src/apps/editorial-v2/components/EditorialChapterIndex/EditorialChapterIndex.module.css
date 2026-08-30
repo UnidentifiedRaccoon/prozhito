@@ -1,0 +1,211 @@
+.list {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--ev2-line);
+  list-style: none;
+}
+
+.list > li {
+  border-top: 1px solid var(--ev2-line);
+}
+
+.list > li > a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 32rem);
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: center;
+  padding: clamp(1.5rem, 3.5vw, 3rem) 0;
+  color: var(--ev2-text);
+  text-decoration: none;
+}
+
+.list > li > a:hover h2,
+.list > li > a:hover .action {
+  color: var(--ev2-accent);
+}
+
+.copy {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  align-content: center;
+}
+
+.number {
+  grid-row: 1 / span 3;
+  padding-top: 0.2rem;
+  color: var(--ev2-muted);
+  font-family: var(--ev2-serif);
+  font-size: 1.45rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.summary {
+  margin: 0;
+}
+
+.copy h2 {
+  max-width: 34rem;
+  margin: 0;
+  font-family: var(--ev2-serif);
+  font-size: clamp(2rem, 3.2vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.summary {
+  max-width: 33rem;
+  margin-top: 1rem;
+  color: var(--ev2-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.action {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-self: start;
+  margin-top: 1.3rem;
+  color: var(--ev2-text-supporting);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.arrow {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 1.4;
+}
+
+@media (max-width: 48rem) {
+  .list {
+    container-type: inline-size;
+  }
+
+  .list > li > a {
+    --ev2-catalog-gutter: clamp(1.25rem, 4cqw, 4rem);
+    position: relative;
+    isolation: isolate;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    align-items: stretch;
+    padding: 0;
+    background: var(--ev2-canvas);
+  }
+
+  .list > li > a > figure {
+    position: relative;
+    grid-row: 1;
+    min-width: 0;
+    height: clamp(160px, 42cqw, 180px);
+    aspect-ratio: auto;
+  }
+
+  .list > li > a > figure img {
+    position: absolute;
+    inset: 0;
+    object-position: var(--ev2-catalog-image-x) var(--ev2-catalog-image-y);
+  }
+
+  .copy {
+    position: relative;
+    z-index: 1;
+    grid-row: 2;
+    display: block;
+    min-width: 0;
+    width: calc(100% - var(--ev2-catalog-gutter));
+    margin-top: -32px;
+    padding: 1.25rem var(--ev2-catalog-gutter);
+    background: var(--ev2-canvas);
+  }
+
+  .number {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: var(--ev2-catalog-gutter);
+    display: grid;
+    place-items: center;
+    min-width: 2rem;
+    min-height: 2rem;
+    padding: 0.25rem 0.4rem;
+    transform: translateY(-50%);
+    background: var(--ev2-canvas);
+    color: var(--ev2-text);
+    font-size: 1rem;
+  }
+
+  .copy h2 {
+    max-width: none;
+    font-size: clamp(1.625rem, 6.7cqw, 1.75rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+  }
+
+  .summary {
+    max-width: none;
+    margin-top: 0.65rem;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .action {
+    margin-top: 0.9rem;
+    font-size: 0.78rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .arrow {
+    flex: 0 0 auto;
+  }
+
+  .list > li > a:focus-visible {
+    outline: 2px solid var(--ev2-accent);
+    outline-offset: -4px;
+  }
+
+  /* Keep keyboard focus above the raised number and its paper background. */
+  .list > li > a:focus-visible::after {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    outline: 2px solid var(--ev2-accent);
+    outline-offset: -4px;
+    pointer-events: none;
+    content: "";
+  }
+}
+
+@media (max-width: 48rem) and (forced-colors: active) {
+  .list,
+  .list > li {
+    border-color: CanvasText;
+  }
+
+  .list > li > a,
+  .copy,
+  .number {
+    background: Canvas;
+  }
+
+  .number,
+  .copy h2,
+  .summary,
+  .action {
+    color: CanvasText;
+  }
+
+  .list > li > a:focus-visible,
+  .list > li > a:focus-visible::after {
+    outline-color: Highlight;
+  }
+}

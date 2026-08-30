@@ -1,0 +1,60 @@
+.page {
+  width: min(calc(100% - (2 * var(--ev2-page-gutter))), var(--ev2-wide-measure));
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(4rem, 8vw, 7rem);
+}
+
+.intro {
+  max-width: 66rem;
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.eyebrow,
+.tagline {
+  margin: 0;
+}
+
+.eyebrow {
+  color: var(--ev2-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.intro h1 {
+  margin: 0.75rem 0 0;
+  font-family: var(--ev2-serif);
+  font-size: clamp(3.25rem, 8vw, 7.5rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.92;
+}
+
+.tagline {
+  max-width: 44rem;
+  margin-top: 1.5rem;
+  color: var(--ev2-muted);
+  font-size: clamp(1rem, 1.5vw, 1.22rem);
+  line-height: 1.55;
+}
+
+@media (max-width: 48rem) {
+  .page {
+    width: 100%;
+  }
+
+  .intro {
+    margin-inline: var(--ev2-page-gutter);
+  }
+}
+
+@media (max-width: 35rem) {
+  .page {
+    padding-top: 3rem;
+  }
+
+  .intro {
+    margin-inline: 1.25rem;
+  }
+}

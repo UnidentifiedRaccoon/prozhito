@@ -1,0 +1,34 @@
+.layout {
+  max-width: var(--ev2-reading-measure);
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 6rem) 0;
+}
+
+.copy {
+  min-width: 0;
+  color: var(--ev2-text);
+  font-family: var(--ev2-serif);
+  font-size: clamp(1.1rem, 1.3vw, 1.3rem);
+  line-height: 1.72;
+}
+
+.copy p {
+  margin: 0;
+}
+
+.copy p + p {
+  margin-top: 1.25em;
+}
+
+.copy > p:first-child {
+  font-size: 1.12em;
+  line-height: 1.6;
+}
+
+.copy :where(strong) {
+  color: var(--ev2-text-supporting);
+}
+
+.copy :where(a) {
+  color: var(--ev2-accent);
+}

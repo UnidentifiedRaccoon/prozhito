@@ -1,0 +1,115 @@
+.cover {
+  --cover-gutter: max(var(--ev2-page-gutter), calc((100% - var(--ev2-section-measure)) / 2));
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto minmax(172px, 1fr) auto;
+  max-width: var(--ev2-cover-measure);
+  min-height: clamp(440px, 120vw, 560px);
+  margin: 0 auto;
+}
+
+.artwork {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  margin: 0;
+}
+
+.artwork img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--cover-x-mobile) var(--cover-y-mobile);
+}
+
+.navigation {
+  z-index: 1;
+  grid-row: 1;
+  padding: 20px var(--cover-gutter);
+}
+
+.back {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--ev2-canvas);
+  color: var(--ev2-text);
+  text-decoration: none;
+}
+
+.back svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.back:hover {
+  background: var(--ev2-workspace-active);
+  color: var(--ev2-accent);
+}
+
+.back:focus-visible {
+  outline: 2px solid var(--ev2-text);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--ev2-canvas);
+}
+
+.title {
+  position: relative;
+  isolation: isolate;
+  grid-row: 3;
+  min-width: 0;
+  padding: 0 var(--cover-gutter) 28px;
+  color: #fff;
+}
+
+/* The fade follows every line instead of relying on a fixed-height title. */
+.title::before {
+  position: absolute;
+  z-index: -1;
+  inset: -120px 0 0;
+  background: linear-gradient(to bottom, rgb(19 27 25 / 0), rgb(19 27 25 / .72) 120px, rgb(19 27 25 / .88));
+  content: "";
+  pointer-events: none;
+}
+
+.label {
+  margin: 0 0 12px;
+  color: rgb(255 255 255 / .88);
+  font-family: var(--ev2-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: .04em;
+}
+
+.title h1 {
+  margin: 0;
+  font-family: var(--ev2-serif);
+  font-size: clamp(40px, 5.6vw, 76px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -.04em;
+  text-align: left;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+@media (min-width: 48rem) {
+  .cover { min-height: clamp(440px, 38vw, 540px); }
+  .artwork img { object-position: var(--cover-x-desktop) var(--cover-y-desktop); }
+  .navigation { padding-block: 28px; }
+  .title { padding-bottom: 40px; }
+}
+
+@media (forced-colors: active) {
+  .label,
+  .title h1 { color: CanvasText; background: Canvas; }
+  .back { border: 1px solid ButtonText; }
+}

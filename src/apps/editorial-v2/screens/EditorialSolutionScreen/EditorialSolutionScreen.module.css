@@ -1,0 +1,46 @@
+.page {
+  padding-bottom: clamp(4rem, 7vw, 7rem);
+}
+
+.content {
+  --ev2-exercise-bleed: var(--ev2-page-gutter);
+  width: min(calc(100% - (2 * var(--ev2-page-gutter))), var(--ev2-section-measure));
+  margin: 0 auto;
+}
+
+.chain {
+  margin-top: 32px;
+}
+.content:focus {
+  /* This is a skip-link destination, not an interactive control. */
+  outline: none;
+}
+
+.page[data-exercise] .content > nav {
+  margin-top: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+@media (max-width: 48rem) {
+  .page[data-exercise] {
+    padding-bottom: 1.5rem;
+  }
+
+  .page[data-exercise] .content > nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    align-items: stretch;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  .page[data-exercise] .content > nav a {
+    min-width: 0;
+    gap: 0.4rem;
+    justify-self: stretch;
+    overflow-wrap: anywhere;
+  }
+
+  .page[data-exercise] .content > nav a:last-child {
+    justify-content: flex-end;
+  }
+}

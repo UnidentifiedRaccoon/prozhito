@@ -1,0 +1,70 @@
+.specimen {
+  padding: clamp(2rem, 6vw, 6rem);
+}
+
+.kicker,
+.lead,
+.palette strong,
+.palette small {
+  margin: 0;
+}
+
+.kicker {
+  color: var(--ev2-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.specimen h1 {
+  max-width: 62rem;
+  margin: 1rem 0 0;
+  font-family: var(--ev2-serif);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+}
+
+.lead {
+  max-width: 42rem;
+  margin-top: 1.5rem;
+  color: var(--ev2-muted);
+  line-height: 1.6;
+}
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 4rem;
+  border-top: 1px solid var(--ev2-line);
+  border-left: 1px solid var(--ev2-line);
+}
+
+.palette > div {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1rem;
+  border-right: 1px solid var(--ev2-line);
+  border-bottom: 1px solid var(--ev2-line);
+}
+
+.palette span {
+  height: 4rem;
+  border: 1px solid var(--ev2-line);
+}
+
+.palette strong {
+  font-size: 0.75rem;
+}
+
+.palette small {
+  color: var(--ev2-muted);
+}
+
+@media (max-width: 44rem) {
+  .palette {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
