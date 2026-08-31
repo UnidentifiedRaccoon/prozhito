@@ -8,12 +8,12 @@ export const EDITORIAL_EXERCISE_LINK_IDS = [
   "situation",
   "emotion",
   "impulse",
-  "risk",
   "pause",
+  "risk",
   "awareness",
   "tool",
-  "mature-action",
-  "observed-result",
+  "action",
+  "result",
 ] as const;
 
 export type EditorialExerciseLinkId =
@@ -119,27 +119,6 @@ export const EDITORIAL_EXERCISE_LINKS: readonly EditorialExerciseLink[] = [
     ],
   },
   {
-    id: "risk",
-    label: "Риск",
-    question: "Какой риск выделен в разборе этой истории?",
-    canonicalOptionId: "risk-canonical",
-    options: [
-      {
-        id: "risk-opposite",
-        text: "Решить, что заплатить к сроку невозможно, не сопоставив доступные ресурсы.",
-        feedback:
-          "В этом варианте сделан вывод о невозможности платежа до сравнения ресурсов. Разбор рассматривает обратную ошибку — считать недоступный или неподходящий ресурс уже пригодным для оплаты.",
-      },
-      { id: "risk-canonical", text: null },
-      {
-        id: "risk-next-section",
-        text: "Пропустить окончание пробной подписки, пока сравниваются ресурсы для платы за комнату.",
-        feedback:
-          "Подписка упомянута среди напоминаний, но не входит в причинную цепочку этого платежа. Здесь разбирается доступность ресурсов для платы за комнату к нужной дате.",
-      },
-    ],
-  },
-  {
     id: "pause",
     label: "Пауза",
     question: "Что является паузой в этой истории?",
@@ -158,6 +137,27 @@ export const EDITORIAL_EXERCISE_LINKS: readonly EditorialExerciseLink[] = [
           "Саша фиксирует новую дату после согласия Тамары. В этом эпизоде отправленная просьба ещё не означает согласованного переноса.",
       },
       { id: "pause-canonical", text: null },
+    ],
+  },
+  {
+    id: "risk",
+    label: "Риск",
+    question: "Что может случиться, если посчитать все ресурсы доступными для оплаты комнаты?",
+    canonicalOptionId: "risk-canonical",
+    options: [
+      {
+        id: "risk-opposite",
+        text: "Решить, что заплатить к сроку невозможно, не сопоставив доступные ресурсы.",
+        feedback:
+          "В этом варианте сделан вывод о невозможности платежа до сравнения ресурсов. Разбор рассматривает обратную ошибку — считать недоступный или неподходящий ресурс уже пригодным для оплаты.",
+      },
+      { id: "risk-canonical", text: null },
+      {
+        id: "risk-next-section",
+        text: "Пропустить окончание пробной подписки, пока сравниваются ресурсы для платы за комнату.",
+        feedback:
+          "Подписка упомянута среди напоминаний, но не входит в причинную цепочку этого платежа. Здесь разбирается доступность ресурсов для платы за комнату к нужной дате.",
+      },
     ],
   },
   {
@@ -203,41 +203,41 @@ export const EDITORIAL_EXERCISE_LINKS: readonly EditorialExerciseLink[] = [
     ],
   },
   {
-    id: "mature-action",
-    label: "Зрелое действие",
+    id: "action",
+    label: "Действие",
     question: "Какое действие показано в истории Саши?",
-    canonicalOptionId: "mature-action-canonical",
+    canonicalOptionId: "action-canonical",
     options: [
       {
-        id: "mature-action-assume",
+        id: "action-assume",
         text: "До срока Саша просит о переносе и сразу считает новую дату установленной, не дожидаясь ответа.",
         feedback:
           "Саша фиксирует новую дату только после явного согласия Тамары, а не сразу после отправки просьбы.",
       },
       {
-        id: "mature-action-after",
+        id: "action-after",
         text: "Саша ждёт дня зарплаты, затем просит перенести оплату и фиксирует дату после согласия.",
         feedback:
           "Саша просит о переносе в тот же вечер, до исходного срока оплаты. Она не ждёт дня зарплаты, чтобы обратиться к Тамаре.",
       },
-      { id: "mature-action-canonical", text: null },
+      { id: "action-canonical", text: null },
     ],
   },
   {
-    id: "observed-result",
-    label: "Наблюдаемый результат",
+    id: "result",
+    label: "Результат",
     question: "Что прямо показано после действия Саши?",
-    canonicalOptionId: "observed-result-canonical",
+    canonicalOptionId: "result-canonical",
     options: [
-      { id: "observed-result-canonical", text: null },
+      { id: "result-canonical", text: null },
       {
-        id: "observed-result-payment",
+        id: "result-payment",
         text: "Саша внесла плату за комнату в согласованную новую дату.",
         feedback:
           "История заканчивается на согласовании и фиксации даты. Внесение платы за комнату в этом фрагменте не показано.",
       },
       {
-        id: "observed-result-compensation",
+        id: "result-compensation",
         text: "Саша получила компенсацию до оплаты комнаты и использовала её для платежа.",
         feedback:
           "В истории сказано, что компенсация не успевает к исходному сроку оплаты. Её получение и использование для платежа в этом фрагменте не показаны.",

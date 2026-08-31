@@ -1,0 +1,44 @@
+{
+  "cloudId": "b1gmnnjgdcc1b7qhjmlk",
+  "folderId": "b1gr37s9qf8nh0fuq1js",
+  "networkId": "enpfgkac2s0mvi5k7kur",
+  "securityGroupId": "enpbm6ibph52otef0etg",
+  "registryId": "crp69rfbh07tt83lve69",
+  "serviceAccounts": {
+    "runtime": "ajeqkp5rul07gop01dev",
+    "gateway": "ajekphqher89vtf5vjp8",
+    "migrator": "ajelbsn8gnfj7aiod7sv",
+    "controller": "ajevtlec1elv988a8dp4",
+    "timer": "ajeim3ccl8d38javqo1g"
+  },
+  "subnets": {
+    "ru-central1-a": "e9bvuttodsahb1rnqt23",
+    "ru-central1-b": "e2leg93bnrlnnhfnfbkg",
+    "ru-central1-d": "fl8eod4pbb2916tbmhgs",
+    "ru-central1-e": "ajcoq1gr515qqjvgadg1"
+  },
+  "database": {
+    "id": "c9qgfensmmafe5c70nhm",
+    "host": "rc1a-426ruu7vr0eiir4d.mdb.yandexcloud.net",
+    "name": "prozhito-db",
+    "version": "17",
+    "resourcePreset": "s3-c2-m8",
+    "diskType": "network-ssd",
+    "diskGiB": 10,
+    "publicIp": false,
+    "backupRetentionDays": 14
+  },
+  "containers":{"api":"bbaeht5qe8jsrhkf3ova"},
+  "apiImage":"cr.yandex/crp69rfbh07tt83lve69/prozhito-api@sha256:cb6b6f2459fcba2d287e2dc5efb1603e3f01bc11e962d9e5f96a9e7af879e5b8",
+  "buckets":{"reader":"prozhito-reader-b1gr37s9","editor":"prozhito-editor-b1gr37s9","media":"prozhito-media-b1gr37s9"},
+  "gateways":{"reader":"d5dh4s8t0gae4iqj66f9","editor":"d5dafsihdhsm0tdj10kd"},
+  "technicalOrigins":{"reader":"https://d5dh4s8t0gae4iqj66f9.0ly8ed4d.apigw.yandexcloud.net","editor":"https://d5dafsihdhsm0tdj10kd.nm0huug4.apigw.yandexcloud.net"},
+  "domains":{"reader":"prozhito.ncfg.ru","editor":"prozhito-editor.ncfg.ru","certificateId":"fpqnl7n8j5epu5t3f9km","dnsZoneId":"dnse7nf9d3nan3b96a4n"},
+  "secrets":{
+    "runtimeDatabase":{"id":"e6q6kmu4nl9ts5711und","versionId":"e6quvrgslcgbrqhkr1sm","key":"postgresql_password"},
+    "migrationDatabase":{"id":"e6q1m8a1905l2fth6hiv","versionId":"e6qp89qn74t3ps2i41j5","key":"postgresql_password"},
+    "editorBootstrap":{"id":"e6qt73rd6p0ig5vev0b3","versionId":"e6q57ekoupf9mst3fh8b","key":"password"},
+    "editorSecurity":{"id":"e6q8hrgo6rpukf93all5","versionId":"e6q6qmsp2kg1r40vtdgh","keys":["totp","rateKey"]}
+  },
+  "schedule": {"functionId":"d4ep56psqiq89q7sjf8g","triggerId":"a1so8nv1uiaae3ismuka","timezone":"Europe/Moscow","close":"00:00","stopAfterDrain":"00:02","start":"07:45","open":"08:00"}
+}

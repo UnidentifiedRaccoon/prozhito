@@ -87,7 +87,7 @@
 - visual-contract scan — PASS: в V2 CSS нет теней, радиусов, градиентов, `:global` или `:has`;
 - Browser desktop — PASS: каталог, «История» и «Решение» соответствуют принятой редакционной анатомии; theme занимает полный viewport без видимой legacy paper-frame; console errors/warnings отсутствуют;
 - Browser 390 px — PASS: каталог содержит ровно 3 Section, story L01-S01 показывает полный текст и meaningful alt, горизонтального overflow нет;
-- Browser 320 px — PASS: самая плотная цепочка L01-S03 содержит ровно 9 items, заканчивается «Наблюдаемым результатом», не обрезается и не создаёт горизонтальный overflow;
+- Browser 320 px — PASS: самая плотная цепочка L01-S03 содержит ровно 9 items, заканчивается «Результатом», не обрезается и не создаёт горизонтальный overflow;
 - flow — PASS: каталог → L01-S01 story → analysis → L01-S02 → L01-S03 → новый каталог; последний CTA не уводит в неперенесённый L02;
 - legacy smoke — PASS: `#/` показывает 6 уровней и 22 ссылки Section, L01-S01 использует старый `living-archive` asset, V2-root отсутствует;
 - `git diff --check` и `git diff --cached --check` — PASS.

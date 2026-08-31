@@ -1,0 +1,12 @@
+import { build } from "esbuild";
+import { mkdir, writeFile } from "node:fs/promises";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import path from "node:path";
+const root=fileURLToPath(new URL("../../",import.meta.url));
+process.chdir(root);
+const out=path.join(root,".work/prozhito/seed");
+await mkdir(out,{recursive:true});
+await build({absWorkingDir:root,entryPoints:["server/seed/source.ts"],bundle:true,platform:"node",format:"esm",outdir:out,entryNames:"seed-bundle",assetNames:"media/[name]-[hash]",publicPath:"/",loader:{".jpg":"file",".png":"file",".webp":"file"},packages:"bundle"});
+const {seed}=await import(pathToFileURL(path.join(out,"seed-bundle.js")).href);
+await writeFile(path.join(out,"seed.json"),JSON.stringify(seed,null,2));
+console.log(`Validated seed: ${seed.levels.length} levels, ${seed.documents.length} Section; assets emitted without changing sources.`);

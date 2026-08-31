@@ -1,0 +1,25 @@
+{
+  "name": "prozhito-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.22.0" },
+  "scripts": {
+    "start": "node --experimental-strip-types index.ts",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "build:seed": "node --experimental-strip-types seed/build.ts"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "fastify": "^5.7.0",
+    "pg": "^8.16.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "@types/pg": "^8.16.0",
+    "esbuild": "^0.25.12",
+    "typescript": "^5.9.3"
+  }
+}

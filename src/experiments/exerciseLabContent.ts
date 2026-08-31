@@ -61,12 +61,12 @@ export const CHAIN_LINK_IDS = [
   "situation",
   "emotion",
   "impulse",
-  "risk",
   "pause",
+  "risk",
   "awareness",
   "tool",
-  "mature-action",
-  "observed-result",
+  "action",
+  "result",
 ] as const;
 
 export type ChainLinkId = (typeof CHAIN_LINK_IDS)[number];
@@ -164,31 +164,8 @@ export const CHAIN_LINKS: readonly ChainLink[] = [
       "Это причинная гипотеза канонического разбора, а не дословно показанная мысль Саши.",
   },
   {
-    id: "risk",
-    number: "04",
-    label: "Риск",
-    question: "Какой риск прямо следует из этого импульса?",
-    canonicalOptionId: "risk-canonical",
-    options: [
-      {
-        id: "risk-opposite",
-        text: "Решить, что заплатить к сроку невозможно, не сопоставив доступные ресурсы.",
-      },
-      {
-        id: "risk-canonical",
-        text: null,
-      },
-      {
-        id: "risk-next-section",
-        text: "Пропустить окончание пробной подписки, пока сравниваются ресурсы для платы за комнату.",
-      },
-    ],
-    review:
-      "Здесь проверяется переоценка доступности ресурса. Первый дистрактор описывает противоположную ошибку, второй относится к следующей Section.",
-  },
-  {
     id: "pause",
-    number: "05",
+    number: "04",
     label: "Пауза",
     question: "Что является паузой в этой истории?",
     canonicalOptionId: "pause-canonical",
@@ -208,6 +185,29 @@ export const CHAIN_LINKS: readonly ChainLink[] = [
     ],
     review:
       "Саша сравнивает даты заранее и ждёт ответа. Она не откладывает обращение до зарплаты и не подменяет просьбу согласием.",
+  },
+  {
+    id: "risk",
+    number: "05",
+    label: "Риск",
+    question: "Какой риск прямо следует из этого импульса?",
+    canonicalOptionId: "risk-canonical",
+    options: [
+      {
+        id: "risk-opposite",
+        text: "Решить, что заплатить к сроку невозможно, не сопоставив доступные ресурсы.",
+      },
+      {
+        id: "risk-canonical",
+        text: null,
+      },
+      {
+        id: "risk-next-section",
+        text: "Пропустить окончание пробной подписки, пока сравниваются ресурсы для платы за комнату.",
+      },
+    ],
+    review:
+      "Здесь проверяется переоценка доступности ресурса. Первый дистрактор описывает противоположную ошибку, второй относится к следующей Section.",
   },
   {
     id: "awareness",
@@ -256,22 +256,22 @@ export const CHAIN_LINKS: readonly ChainLink[] = [
       "Календарь помогает сравнить даты, а ответ Тамары фиксируется в переписке. Личная отметка не заменяет ответ, а транспортной картой заплатить за комнату нельзя.",
   },
   {
-    id: "mature-action",
+    id: "action",
     number: "08",
-    label: "Зрелое действие",
+    label: "Действие",
     question: "Какое действие обосновано причинностью этой истории?",
-    canonicalOptionId: "mature-action-canonical",
+    canonicalOptionId: "action-canonical",
     options: [
       {
-        id: "mature-action-assume",
+        id: "action-assume",
         text: "До срока Саша просит о переносе и сразу считает новую дату установленной, не дожидаясь ответа.",
       },
       {
-        id: "mature-action-after",
+        id: "action-after",
         text: "Саша ждёт дня зарплаты, затем просит перенести оплату и фиксирует дату после согласия.",
       },
       {
-        id: "mature-action-canonical",
+        id: "action-canonical",
         text: null,
       },
     ],
@@ -279,22 +279,22 @@ export const CHAIN_LINKS: readonly ChainLink[] = [
       "Канонический ход удерживает обе границы: обращение происходит до исходного срока, новая дата фиксируется после согласия Тамары.",
   },
   {
-    id: "observed-result",
+    id: "result",
     number: "09",
-    label: "Наблюдаемый результат",
+    label: "Результат",
     question: "Что прямо показано после действия Саши?",
-    canonicalOptionId: "observed-result-canonical",
+    canonicalOptionId: "result-canonical",
     options: [
       {
-        id: "observed-result-canonical",
+        id: "result-canonical",
         text: null,
       },
       {
-        id: "observed-result-payment",
+        id: "result-payment",
         text: "Саша внесла плату за комнату в согласованную новую дату.",
       },
       {
-        id: "observed-result-compensation",
+        id: "result-compensation",
         text: "Саша получила компенсацию до оплаты комнаты и использовала её для платежа.",
       },
     ],

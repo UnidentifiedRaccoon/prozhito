@@ -1,0 +1,1 @@
+{"extends":"./tsconfig.json","include":["admin","src"],"compilerOptions":{"noUnusedLocals":true,"noUnusedParameters":true}}

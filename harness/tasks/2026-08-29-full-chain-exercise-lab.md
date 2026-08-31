@@ -13,7 +13,7 @@
 **Входные источники:**
 
 - `content/sections/level-01/section-01-money-by-date.md` — канонические девять звеньев;
-- `content/story/book.md#level-01-section-01` — факты и предел наблюдаемого результата;
+- `content/story/book.md#level-01-section-01` — факты и предел результата;
 - `docs/CONTENT_MAP.md` — граница, причинность и результат L01-S01;
 - `content/program/competency-action-map.md` — действия L01-S01-A01/A02;
 - `docs/SAFETY.md` — граница образовательного разбора и рекомендации;

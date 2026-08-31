@@ -5,7 +5,7 @@ import { SectionHeader } from "../components/product/SectionHeader/SectionHeader
 import { SectionHeroHeader } from "../components/product/SectionHeroHeader/SectionHeroHeader";
 import type { ParsedSection } from "../content/sectionContract";
 import { catalogHref, storyHref } from "../router";
-import { getSectionVisuals } from "../visuals/sectionVisuals";
+import { useSectionVisuals } from "../content/cloudContent";
 
 interface AnalysisScreenProps {
   section: ParsedSection;
@@ -18,7 +18,7 @@ export function AnalysisScreen({
 }: AnalysisScreenProps) {
   const forwardHref = nextSection ? storyHref(nextSection.id) : catalogHref;
   const forwardLabel = nextSection ? "Следующая история" : "Вернуться к списку";
-  const visuals = getSectionVisuals(section.id);
+  const visuals = useSectionVisuals(section.id);
   const analysisArtwork = visuals?.analysis;
 
   return (

@@ -7,6 +7,10 @@
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "build": "npm run typecheck && vite build",
+    "build:cloud": "npm run typecheck && vite build --config vite.cloud.config.ts",
+    "build:admin": "tsc --noEmit --project tsconfig.admin.json && vite build --config vite.admin.config.ts",
+    "dev:cloud": "vite --config vite.cloud.config.ts",
+    "dev:admin": "vite --config vite.admin.config.ts",
     "preview": "vite preview --host 127.0.0.1",
     "storybook": "storybook dev -p 6006 --no-open --disable-telemetry",
     "build-storybook": "storybook build --disable-telemetry"

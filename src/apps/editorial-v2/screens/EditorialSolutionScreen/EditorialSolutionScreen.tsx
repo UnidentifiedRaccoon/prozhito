@@ -10,7 +10,7 @@ import {
 } from "../../components/EditorialPageNavigation/EditorialPageNavigation";
 import type { ParsedSection } from "../../../../content/sectionContract";
 import type { EditorialV2ArtworkAsset } from "../../model/editorialV2Visuals";
-import { getEditorialExerciseLinks } from "../../model/editorialExercises";
+import { useEditorialLinks } from "../../../../content/cloudContent";
 import styles from "./EditorialSolutionScreen.module.css";
 
 export interface EditorialSolutionScreenProps {
@@ -29,7 +29,7 @@ export function EditorialSolutionScreen({
   section,
   exercise,
 }: EditorialSolutionScreenProps) {
-  const links = getEditorialExerciseLinks(section.id);
+  const links = useEditorialLinks(section.id);
 
   return (
     <article

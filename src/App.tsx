@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { sectionCollection } from "./content/sections";
+import { sectionCollection as staticCollection, type SectionCollection } from "./content/sections";
 import { useHashRoute } from "./router";
 import { AnalysisScreen } from "./screens/AnalysisScreen";
 import { CatalogScreen } from "./screens/CatalogScreen";
@@ -37,8 +37,10 @@ const appLoadingFallback = (
   </div>
 );
 
-export default function App() {
+export default function App({sectionCollection=staticCollection,cloud=false}:{sectionCollection?:SectionCollection;cloud?:boolean}) {
   const route = useHashRoute();
+
+  if(cloud && ["exercise-lab","modern-editorial-lab","editorial-header-lab","editorial-catalog-lab"].includes(route.name))return <NotFoundScreen />;
 
   if (!sectionCollection.ok) {
     return <ContentErrorScreen error={sectionCollection.error} />;

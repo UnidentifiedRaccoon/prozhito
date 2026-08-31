@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import type { ParsedSection } from "../../content/sectionContract";
 import { EditorialV2Shell } from "./components/EditorialV2Shell/EditorialV2Shell";
 import {
@@ -15,7 +15,8 @@ import { EditorialCatalogScreen } from "./screens/EditorialCatalogScreen/Editori
 import { EditorialSolutionScreen } from "./screens/EditorialSolutionScreen/EditorialSolutionScreen";
 import { EditorialStoryScreen } from "./screens/EditorialStoryScreen/EditorialStoryScreen";
 import { createEditorialExerciseState } from "./model/editorialExercise";
-import { getEditorialV2SolutionVisual } from "./model/editorialV2Visuals";
+import { CloudContentContext, useEditorialArtwork } from "../../content/cloudContent";
+import type { EditorialV2ArtworkAsset } from "./model/editorialV2Visuals";
 
 export interface EditorialV2AppProps {
   route: EditorialV2Route;
@@ -26,7 +27,11 @@ export default function EditorialV2App({
   route,
   sectionsById,
 }: EditorialV2AppProps) {
-  const entries = buildEditorialV2Program(sectionsById);
+  const cloudContent = useContext(CloudContentContext);
+  const entries = buildEditorialV2Program(sectionsById).map(entry => {
+    const remote=cloudContent?.get(entry.id)?.editorial;
+    return remote ? {...entry,summary:remote.summary,artwork:remote.story as EditorialV2ArtworkAsset} : entry;
+  });
 
   if (route.name === "editorial-v2-catalog") {
     return (
@@ -72,6 +77,7 @@ function EditorialSectionView({
 }) {
   // A Section owns its temporary answers; changing its key or leaving it clears them.
   const [exerciseState, setExerciseState] = useState(createEditorialExerciseState);
+  const solutionArtwork = useEditorialArtwork(entry.id,true);
 
   const isStory = route.name === "editorial-v2-story";
   if (isStory) {
@@ -106,7 +112,7 @@ function EditorialSectionView({
       showMasthead={false}
     >
       <EditorialSolutionScreen
-        artwork={getEditorialV2SolutionVisual(entry.id)}
+        artwork={solutionArtwork}
         exercise={{
           state: exerciseState,
           onStateChange: setExerciseState,

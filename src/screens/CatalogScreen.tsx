@@ -5,6 +5,8 @@ import { Text } from "../components/ui/Text/Text";
 import type { ParsedProgramLevel } from "../content/sections";
 import { storyHref } from "../router";
 import { getSectionVisuals } from "../visuals/sectionVisuals";
+import { useContext } from "react";
+import { CloudContentContext } from "../content/cloudContent";
 
 interface CatalogScreenProps {
   levels: readonly ParsedProgramLevel[];
@@ -13,6 +15,7 @@ interface CatalogScreenProps {
 const ROMAN_LEVELS = ["I", "II", "III", "IV", "V", "VI"] as const;
 
 export function CatalogScreen({ levels }: CatalogScreenProps) {
+  const cloudContent = useContext(CloudContentContext);
   return (
     <AppShell className="catalog-screen" pageTitle="Прожито" routeKey="catalog">
       <header className="catalog-intro">
@@ -23,9 +26,8 @@ export function CatalogScreen({ levels }: CatalogScreenProps) {
 
       {levels.map((level) => {
         const titleId = `${level.id.toLowerCase()}-title`;
-        const catalogArtwork = getSectionVisuals(
-          level.sections[0]?.id ?? "",
-        )?.catalog;
+        const firstId = level.sections[0]?.id ?? "";
+        const catalogArtwork = cloudContent ? cloudContent.get(firstId)?.visuals.catalog : getSectionVisuals(firstId)?.catalog;
         const isFirstLevel = level.number === 1;
 
         return (

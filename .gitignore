@@ -4,6 +4,13 @@
 *.local
 node_modules/
 dist/
+dist-cloud/
+dist-admin/
+.work/
+*.tfstate
+*.tfstate.*
+.terraform/
+**/__pycache__/
 storybook-static/
 .impeccable/
 debug-*.log

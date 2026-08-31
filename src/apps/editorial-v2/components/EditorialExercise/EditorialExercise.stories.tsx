@@ -200,7 +200,7 @@ export const SequentialAccess: Story = {
       await expectUnlockedSteps(canvasElement, 1);
       await expect(canvas.queryByRole("button", { name: "Начать заново" })).not.toBeInTheDocument();
       await expect(canvas.getByRole("button", { name: "Следующее" })).toBeDisabled();
-      await userEvent.click(canvas.getByRole("button", { name: "9. Наблюдаемый результат. Ответ не выбран." }));
+      await userEvent.click(canvas.getByRole("button", { name: "9. Результат. Ответ не выбран." }));
       await expect(canvas.getByRole("group")).toHaveTextContent(EDITORIAL_EXERCISE_LINKS[0].question);
       await expectAnsweredStepCount(canvasElement, 0);
     });

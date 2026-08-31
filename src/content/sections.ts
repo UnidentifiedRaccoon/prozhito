@@ -16,7 +16,7 @@ export interface ParsedProgramLevel {
   sections: readonly ParsedSection[];
 }
 
-type SectionCollection =
+export type SectionCollection =
   | {
       ok: true;
       sections: readonly ParsedSection[];

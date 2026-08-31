@@ -2,12 +2,12 @@ export const ANALYSIS_LABELS = [
   "Ситуация",
   "Эмоция",
   "Импульс",
-  "Риск",
   "Пауза",
+  "Риск",
   "Осознание",
   "Инструмент",
-  "Зрелое действие",
-  "Наблюдаемый результат",
+  "Действие",
+  "Результат",
 ] as const;
 
 export type AnalysisLabel = (typeof ANALYSIS_LABELS)[number];

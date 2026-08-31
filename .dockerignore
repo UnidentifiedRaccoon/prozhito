@@ -1,0 +1,14 @@
+**
+!server/
+!server/*.ts
+!server/package.json
+!server/package-lock.json
+!server/migrations/
+!server/migrations/*.sql
+!.work/
+!.work/prozhito/
+!.work/prozhito/seed/
+!.work/prozhito/seed/seed.json
+!infra/
+!infra/yandex-cloud/
+!infra/yandex-cloud/Dockerfile

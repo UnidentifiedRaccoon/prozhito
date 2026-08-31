@@ -5,14 +5,14 @@ import { SectionHeader } from "../components/product/SectionHeader/SectionHeader
 import { SectionHeroHeader } from "../components/product/SectionHeroHeader/SectionHeroHeader";
 import type { ParsedSection } from "../content/sectionContract";
 import { analysisHref, catalogHref } from "../router";
-import { getSectionVisuals } from "../visuals/sectionVisuals";
+import { useSectionVisuals } from "../content/cloudContent";
 
 interface StoryScreenProps {
   section: ParsedSection;
 }
 
 export function StoryScreen({ section }: StoryScreenProps) {
-  const visuals = getSectionVisuals(section.id);
+  const visuals = useSectionVisuals(section.id);
   const storyArtwork = visuals?.story;
 
   return (
