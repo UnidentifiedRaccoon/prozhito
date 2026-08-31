@@ -12,7 +12,7 @@
 
 **Входные источники:** Явный запрос владельца от 31 августа 2026 года; AGENTS.md, PROJECT_STATE.md, RISK_POLICY.md; текущие task packets редакции контента и облачного пилота; фактические Git status/diff и GitHub metadata.
 
-**Write set:** Существующие изменённые/новые исходники, content, docs, harness, skills, admin, server, infra, конфигурация и готовые output/presentations — только включение в общий коммит без содержательной переработки; .gitignore — исключение временной .work; этот packet; Git index/main и origin/main.
+**Write set:** Существующие изменённые/новые исходники, content, docs, harness, skills, admin, server, infra, конфигурация и готовые output/presentations — только включение в общий коммит без содержательной переработки; .gitignore — исключение временной .work; .github/workflows/pages.yml и README.md — установка серверных зависимостей для общей схемы контента при чистой сборке; этот packet; Git index/main и origin/main.
 
 **Вне scope:** .work (рабочие копии, выгрузки, промежуточные рендеры), зависимости, сборки, секреты и .env; изменение контента/архитектуры; операции облачного deploy/БД; переписывание истории и force-push. Существующий workflow GitHub Pages запускается автоматически при push в main.
 
@@ -35,7 +35,9 @@
 - npm run build, build:cloud, build:admin, build-storybook — PASS, включая типизацию. Предупреждения о крупных chunks не блокируют сборки.
 - Серверная типизация — PASS; unit-тесты сервера 3/3 — PASS; тесты контроллера расписания 2/2 — PASS.
 - Интеграционный тест с БД — SKIPPED намеренно (PROZHITO_INTEGRATION=0); cloud-deploy/stop/start не выполнялись.
-- Staged diff-check и удалённая публикация проверяются следующим шагом.
+- Unstaged/staged diff-check — PASS. Первый коммит 124097c успешно отправлен в origin/main; оба SHA совпали, рабочее дерево чистое.
+- Первый GitHub Pages run 33427104554 — FAIL: чистая машина устанавливает только корневые зависимости, но новые типы ContentDocument импортируют server/content.ts и требуют zod из server/package-lock.json. Локальная сборка использовала уже установленный server/node_modules. В существующий workflow добавлена npm ci --prefix server --ignore-scripts; README дополнен тем же шагом. Код приложения, API и инфраструктура не менялись.
+- Повторная проверка в отдельной чистой копии git archive HEAD: npm ci, npm ci --prefix server --ignore-scripts, npm run build — PASS. Обе установки сообщили 0 известных уязвимостей; обновления зависимостей не выполнялись. Исправление CI готово к повторному push.
 
 **Источники и даты:** Локальный репозиторий и GitHub API, 31 августа 2026 года. Скилл stefania-knowledge-base подтвердил отсутствие активных поверхностей; контекст взят из docs/harness без инициализации внешней KB.
 
